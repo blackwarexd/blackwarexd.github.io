@@ -191,9 +191,6 @@ a {
     }
 
     & .sidebar.right {
-      @media all and (max-width: $mobileBreakpoint) {
-        flex-direction: column;
-      }
       right: calc(calc(100vw - $pageWidth) / 2 - $sidePanelWidth);
       flex-wrap: wrap;
       & > * {
