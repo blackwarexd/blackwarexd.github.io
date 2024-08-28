@@ -69,7 +69,7 @@ strong {
 }
 
 a {
-  font-weight: $semiBoldWeight;
+  // font-weight: $semiBoldWeight; //change me
   text-decoration: none;
   transition: color 0.2s ease;
   color: var(--secondary);
@@ -172,7 +172,7 @@ a {
       box-sizing: border-box;
       padding: 0 4rem;
       position: fixed;
-      z-index: 1;
+      // z-index: 1;
       @media all and (max-width: $fullPageWidth) {
         position: initial;
         flex-direction: row;
@@ -183,6 +183,7 @@ a {
     }
 
     & .sidebar.left {
+      z-index: 1;
       left: calc(calc(100vw - $pageWidth) / 2 - $sidePanelWidth);
       @media all and (max-width: $fullPageWidth) {
         gap: 0;
@@ -284,12 +285,14 @@ h5,
 h6,
 thead {
   font-family: var(--headerFont);
-  color: var(--dark);
+  // color: var(--dark);
+  color: "#cad2e2"; //change me
   font-weight: revert;
   margin-bottom: 0;
 
   article > & > a[role="anchor"] {
-    color: var(--dark);
+    // color: var(--dark);
+    color: "#cad2e2"; //change me
     background-color: transparent;
   }
 }

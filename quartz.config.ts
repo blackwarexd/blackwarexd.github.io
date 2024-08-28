@@ -30,15 +30,6 @@ const config: QuartzConfig = {
       },
       colors: {
         lightMode: {
-          // light: "#faf8f8",
-          // lightgray: "#e5e5e5",
-          // gray: "#b8b8b8",
-          // darkgray: "#4e4e4e",
-          // dark: "#2b2b2b",
-          // secondary: "#284b63",
-          // tertiary: "#84a59d",
-          // highlight: "rgba(143, 159, 169, 0.15)",
-          // textHighlight: "#fff23688",
           light: "#f5f2e9",
           lightgray: "#e0dcd3",
           gray: "#b8b8b8",
@@ -50,24 +41,15 @@ const config: QuartzConfig = {
           textHighlight: "#fff23688",
         },
         darkMode: {
-          // light: "#161618",
-          // lightgray: "#393639",
-          // gray: "#646464",
-          // darkgray: "#d4d4d4",
-          // dark: "#ebebec",
-          // secondary: "#7b97aa",
-          // tertiary: "#84a59d",
-          // highlight: "rgba(143, 159, 169, 0.15)",
-          // textHighlight: "#b3aa0288",
-          light: "#100f0f",
-          lightgray: "#282726",
-          gray: "#343331",
-          darkgray: "#cecdc3",
-          dark: "#e6e4d9",
-          secondary: "#5e409d",
-          tertiary: "#8b7ec8",
-          highlight: "#5e409d26",
-          textHighlight: "#b3aa0288",
+          light: "#141d2b", // page background
+          lightgray: "rgba(143, 159, 169, 0.15)", // borders
+          gray: "#e6e4d9", // graph links, heavier borders
+          darkgray: "#a4b1cd", // body text
+          dark: "#9fef00", // header text and icons
+          secondary: "#007bff", // link colour, current graph node
+          tertiary: "#084382", // hover states and visited graph nodes
+          highlight: "rgba(143, 159, 169, 0.15)", // internal link background, highlighted text, highlighted lines of code
+          textHighlight: "#b3aa0288", // markdown highlighted text background
         },
       },
     },
@@ -78,12 +60,13 @@ const config: QuartzConfig = {
       Plugin.CreatedModifiedDate({
         priority: ["frontmatter", "filesystem"],
       }),
+      Plugin.Poetry(),
       Plugin.SyntaxHighlighting({
         theme: {
-          light: "github-light",
-          dark: "github-dark",
+          light: "catppuccin-latte",
+          dark: "catppuccin-mocha",
         },
-        keepBackground: false,
+        keepBackground: true,
       }),
       Plugin.ObsidianFlavoredMarkdown({ enableInHtmlEmbed: false }),
       Plugin.GitHubFlavoredMarkdown(),
