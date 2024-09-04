@@ -16,7 +16,7 @@ const config: QuartzConfig = {
     // },
     analytics: null,
     locale: "en-US",
-    baseUrl: "zetahub.xyz",
+    baseUrl: "blackwarexd.github.io",
     ignorePatterns: ["private", "templates", ".obsidian"],
     defaultDateType: "created",
     theme: {
