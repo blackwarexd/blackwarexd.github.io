@@ -5,8 +5,6 @@ tags:
   - 
 ---
 
-# Get the package name
-
 First, we will need to get the package name of the desired application. For example: `com.example.app`
 
 Command Below:
@@ -26,8 +24,6 @@ adb shell pm list packages | grep -i app
 ![[package name via browser.png]]
 
 
-# Get the full path APK file
-
 Second, we will be allocated the path of the selected APK file.
 
 > [!note]
@@ -42,8 +38,6 @@ adb shell pm path com.example.app
 
 ![[getting the full path name.png]]
 
-
-# Pull the APK file
 
 Using the full path name, pull the APK file from the Android device to the machine.
 

@@ -6,24 +6,59 @@ import { GlobalConfiguration } from "../cfg"
 
 export type SortFn = (f1: QuartzPluginData, f2: QuartzPluginData) => number
 
+// export function byDateAndAlphabetical(cfg: GlobalConfiguration): SortFn {
+//   return (f1, f2) => {
+//     if (f1.dates && f2.dates) {
+//       // sort descending
+//       return getDate(cfg, f2)!.getTime() - getDate(cfg, f1)!.getTime()
+//     } else if (f1.dates && !f2.dates) {
+//       // prioritize files with dates
+//       return -1
+//     } else if (!f1.dates && f2.dates) {
+//       return 1
+//     }
+
+//     // otherwise, sort lexographically by title
+//     const f1Title = f1.frontmatter?.title.toLowerCase() ?? ""
+//     const f2Title = f2.frontmatter?.title.toLowerCase() ?? ""
+//     return f1Title.localeCompare(f2Title)
+//   }
+// }
+
 export function byDateAndAlphabetical(cfg: GlobalConfiguration): SortFn {
   return (f1, f2) => {
-    if (f1.dates && f2.dates) {
-      // sort descending
-      return getDate(cfg, f2)!.getTime() - getDate(cfg, f1)!.getTime()
-    } else if (f1.dates && !f2.dates) {
-      // prioritize files with dates
-      return -1
-    } else if (!f1.dates && f2.dates) {
-      return 1
+    const title1 = f1.frontmatter?.title || '';
+    const title2 = f2.frontmatter?.title || '';
+    
+    const num1 = extractLeadingNumber(title1);
+    const num2 = extractLeadingNumber(title2);
+    
+    // Compare the extracted numbers.
+    if (num1 !== num2) {
+      return num1 - num2;
     }
-
-    // otherwise, sort lexographically by title
-    const f1Title = f1.frontmatter?.title.toLowerCase() ?? ""
-    const f2Title = f2.frontmatter?.title.toLowerCase() ?? ""
-    return f1Title.localeCompare(f2Title)
-  }
+    
+    // Fallback: if numbers are equal, sort alphabetically.
+    return title1.localeCompare(title2);
+  };
 }
+
+/**
+ * Extracts the leading number from a title.
+ * If the title contains a comma or dash after the number,
+ * it returns that number. For example:
+ *   "111,2049-NFS" -> 111
+ *   "22-SSH"      -> 22
+ */
+function extractLeadingNumber(title: string): number {
+  const match = title.match(/^(\d+)[,-]/);
+  if (match) {
+    return Number(match[1]);
+  }
+  // Fallback to a high number so that titles without a leading number come last.
+  return Number.MAX_SAFE_INTEGER;
+}
+
 
 type Props = {
   limit?: number

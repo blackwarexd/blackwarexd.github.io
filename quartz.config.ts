@@ -41,13 +41,13 @@ const config: QuartzConfig = {
           textHighlight: "#fff23688",
         },
         darkMode: {
-          light: "#141d2b", // page background
+          light: "#0F0F0F", // background
           lightgray: "rgba(143, 159, 169, 0.15)", // borders
           gray: "#e6e4d9", // graph links, heavier borders
-          darkgray: "#a4b1cd", // body text
-          dark: "#9fef00", // header text and icons
-          secondary: "#007bff", // link colour, current graph node
-          tertiary: "#084382", // hover states and visited graph nodes
+          darkgray: "#e7e6f3", // body text
+          dark: "#22d64c", // header text and icons
+          secondary: "#FF204E", // link colour, current graph node
+          tertiary: "rgba(255, 32, 78, 0.5)", // hover states and visited graph nodes
           highlight: "rgba(143, 159, 169, 0.15)", // internal link background, highlighted text, highlighted lines of code
           textHighlight: "#b3aa0288", // markdown highlighted text background
         },

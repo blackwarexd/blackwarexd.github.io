@@ -25,10 +25,10 @@ Nmap provides a number of features for probing computer networks, including host
 
 ```bash
 # Enum FTP with all NSE
-nmap -p21 --script=ftp-* $IP
+sudo nmap -p21 --script=ftp-* $IP
 
 # Perform brute-force
-nmap -p21 --script=ftp-brute --script-args userdb=/wordlists/users.txt $IP
+sudo nmap -p21 --script=ftp-brute --script-args userdb=/wordlists/users.txt $IP
 ```
 
 # FTP command
