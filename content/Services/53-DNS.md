@@ -32,8 +32,27 @@ The `Domain Name System` (**DNS**) is essential for the Internet. It translates 
 | PTR        | Performs reverse lookups by converting IP addresses to domain names.                                                                    |
 | SOA        | Provides details about the DNS zone and the administrative contact's email address.                                                     |
 
-# Dig
+# WHOIS
+[WHOIS](https://www.commandlinux.com/man-page/man1/whois.1.html) is a client for the whois directory service.
+```bash
+whois example.com
+```
 
+Each WHOIS record typically contains the following information:
+
+| Field                    | Description                                                             |
+| ------------------------ | ----------------------------------------------------------------------- |
+| `Domain Name`            | The registered domain. (e.g., example.com)                              |
+| `Registrar`              | The company where the domain was registered. (e.g., GoDaddy, Namecheap) |
+| `Registrant Contact`     | The person or organization that owns the domain.                        |
+| `Administrative Contact` | The person responsible for managing the domain.                         |
+| `Technical Contact`      | The person handling technical issues for the domain.                    |
+| `Creation Date`          | When the domain was registered.                                         |
+| `Expiration Date`        | When the domain is set to expire.                                       |
+| `Name Servers`           | Servers that translate the domain name into an IP address.              |
+
+
+# Dig
 [Dig](https://linux.die.net/man/1/dig) (**domain information groper**) is a flexible tool for interrogating DNS name servers. It performs DNS lookups and displays the answers that are returned from the name server(s) that were queried.
 
 ```bash
@@ -57,7 +76,6 @@ for sub in $(cat /wordlists/subdomains.txt);do dig $sub.example.com @$IP | grep 
 ```
 
 # DNSrecon
-
 [Dnsrecon](https://github.com/darkoperator/dnsrecon) is a python script for DNS enumeration.
 
 ```bash
@@ -66,12 +84,24 @@ dnsrecon -d example.com
 ```
 
 # DNSenum
-
 [Dnsenum](https://github.com/fwaeytens/dnsenum) is a perl script that enumerates DNS information.
 
 ```bash
 # Subdomain bruteforce
 dnsenum --dnsserver $IP --enum -p 0 -s 0 -o subdomains.txt -f /wordlists/subdomains.txt example.com
+```
+
+# ZoneTransfer
+> [!faq] Description
+> The zone transfer is how a **secondary DNS server receives information from the primary DNS server and updates it**. There's web based [tool](https://hackertarget.com/zone-transfer/) that can performing the zone transfer automatically or doing it manually using **nslookup**.
+
+
+```bash
+# Identifying nameservers
+nslookup -type=NS example.com
+
+# Performing the zone transfer
+nslookup -type=any -query=AXFR example.com ns.example.com
 ```
 
 # Config files
